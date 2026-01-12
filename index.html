@@ -163,8 +163,10 @@
 <!-- Bộ chọn -->
 <div class="top-select">
   <select id="wordList">
-    <option value="1">Advertising </option>
+    <option value="1">Advertising</option>
     <option value="2">Celebrity Endorsement</option>
+    <option value="3">Global Warming</option>
+
   </select>
 </div>
 
@@ -263,8 +265,39 @@ const data = {
 { en:"overexposure /ˌəʊvərɪkˈspəʊʒə(r)/", vn:"việc lộ diện quá mức", tick:false },
 { en:"commercial gain /kəˈmɜːʃl ɡeɪn/", vn:"lợi ích thương mại", tick:false },
 { en:"moral scrutiny /ˈmɒrəl ˈskruːtəni/", vn:"sự xem xét đạo đức", tick:false },
+  ],
 
-  ]
+  3: [
+{ en:"biodiversity decline /ˌbaɪ.oʊ.daɪˈvɜr.sə.ti dɪˈklaɪn/", vn:"suy giảm đa dạng sinh học", tick:false },
+{ en:"habitat loss /ˈhæb.ɪ.tæt lɔːs/", vn:"mất môi trường sống", tick:false },
+{ en:"environmental degradation /ɪnˌvaɪ.rənˈmen.təl ˌdeɡ.rəˈdeɪ.ʃən/", vn:"suy thoái môi trường", tick:false },
+{ en:"greenhouse gases /ˈɡrinˌhaʊs ˈɡæsɪz/", vn:"khí nhà kính", tick:false },
+{ en:"industrial pollution /ɪnˈdʌs.tri.əl pəˈluː.ʃən/", vn:"ô nhiễm công nghiệp", tick:false },
+{ en:"carbon emissions /ˈkɑr.bən ɪˈmɪʃ.ənz/", vn:"khí thải carbon", tick:false },
+{ en:"carbon footprint /ˈkɑr.bən ˈfʊtˌprɪnt/", vn:"dấu chân carbon", tick:false },
+{ en:"fossil fuels /ˈfɑː.səl ˌfjuːəlz/", vn:"nhiên liệu hóa thạch", tick:false },
+{ en:"climate crisis /ˈklaɪ.mət ˈkraɪ.sɪs/", vn:"khủng hoảng khí hậu", tick:false },
+{ en:"climate-induced migration /ˈklaɪ.mət ɪnˌduːst maɪˈɡreɪ.ʃən/", vn:"di cư do biến đổi khí hậu", tick:false },
+{ en:"melting polar ice caps /ˈmɛl.tɪŋ ˈpoʊ.lɚ aɪs kæps/", vn:"băng ở cực tan chảy", tick:false },
+{ en:"rising sea levels /ˈraɪ.zɪŋ siː ˈlev.əlz/", vn:"mực nước biển dâng", tick:false },
+{ en:"extreme weather events /ɪkˈstriːm ˈweð.ər ɪˈvents/", vn:"hiện tượng thời tiết cực đoan", tick:false },
+{ en:"food insecurity /fuːd ˌɪn.səˈkjʊr.ə.t̬i/", vn:"tình trạng thiếu lương thực", tick:false },
+{ en:"prolonged droughts /proʊˈlɔːŋd draʊts/", vn:"hạn hán kéo dài", tick:false },
+{ en:"renewable energy /rɪˈnuː.ə.bəl ˈen.ɚ.dʒi/", vn:"năng lượng tái tạo", tick:false },
+{ en:"energy efficiency /ˈen.ɚ.dʒi ɪˈfɪʃ.ən.si/", vn:"hiệu quả năng lượng", tick:false },
+{ en:"solar and wind power /ˈsoʊ.lɚ ænd wɪnd ˈpaʊ.ɚ/", vn:"năng lượng mặt trời và gió", tick:false },
+{ en:"eco-friendly lifestyle /ˈiː.koʊ ˈfrend.li ˈlaɪf.staɪl/", vn:"lối sống thân thiện môi trường", tick:false },
+{ en:"sustainable living /səˈsteɪ.nə.bəl ˈlɪv.ɪŋ/", vn:"lối sống bền vững", tick:false },
+{ en:"plant-based diet /ˈplænt beɪst ˈdaɪ.ət/", vn:"chế độ ăn dựa trên thực vật", tick:false },
+{ en:"carbon tax /ˈkɑr.bən tæks/", vn:"thuế carbon", tick:false },
+{ en:"climate policy /ˈklaɪ.mət ˈpɑː.lə.si/", vn:"chính sách khí hậu", tick:false },
+{ en:"climate action plan /ˈklaɪ.mət ˈæk.ʃən plæn/", vn:"kế hoạch hành động khí hậu", tick:false },
+{ en:"intergovernmental cooperation /ˌɪn.t̬ɚˌɡʌv.ɚnˈmen.t̬əl koʊˌɑː.pɚˈeɪ.ʃən/", vn:"hợp tác liên chính phủ", tick:false },
+
+  ],
+
+
+
 };
 
 const exercises = {
@@ -282,8 +315,17 @@ const exercises = {
 {q:"A singer with strong ________ can attract millions of new customers.", a:"celebrity appeal"},
 {q:"Brands aim to build long-term ________ among returning customers.", a:"brand loyalty"},
 {q:"A poorly handled ________ may damage both the celebrity and the brand.", a:"celebrity scandal"},
+  ],
+  3: [
+{q:"Burning coal and oil increases harmful ________.", a:"greenhouse gases"},
+{q:"Cutting down forests results in severe ________ for wildlife.", a:"habitat loss"},
+{q:"Relying on coal and oil keeps us dependent on ________.", a:"fossil fuels"},
+{q:"Governments introduce a ________ to reduce emissions from companies.", a:"carbon tax"},
+{q:"Floods and heatwaves are becoming more common ________.", a:"extreme weather events"},
+  ],
 
-  ]
+
+
 };
 
 let currList = 1, listCopy=[], index=0;

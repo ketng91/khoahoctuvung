@@ -21,9 +21,9 @@
     font-size: 32px;
     font-weight: bold;
     color: #7a4e3e;
+    position: relative;
   }
 
-  /* Bộ chọn list */
   .top-select {
     display: flex;
     justify-content: flex-start;
@@ -38,12 +38,28 @@
     background-color: #e3fdfd;
   }
 
-  iframe {
-    width: 90%;
-    height: 480px;
-    border: 3px solid #ffd6ba;
+  /* Word list */
+  .word-list {
+    width: 85%;
+    margin: 20px auto;
+    background-color: #E0FBE2;
     border-radius: 10px;
-    margin-top: 15px;
+    padding: 15px;
+    text-align: left;
+    font-size: 22px;
+  }
+
+  .word-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 10px;
+    border-bottom: 1px dashed #ffb3ba;
+  }
+  .word-row:last-child { border-bottom: none; }
+
+  .word-row input {
+    transform: scale(1.4);
+    cursor: pointer;
   }
 
   /* Ôn tập */
@@ -52,6 +68,8 @@
     width: 70%;
     background-color: #ffe5ec;
     padding: 25px;
+    font-weight: bold;
+    color: #607274;
     font-size: 26px;
     border-radius: 12px;
   }
@@ -75,6 +93,7 @@
     font-size: 22px;
     text-align: left;
   }
+
   .exercise input {
     width: 220px;
     font-size: 20px;
@@ -82,6 +101,7 @@
     margin-left: 10px;
     border-radius: 6px;
   }
+
   .exercise button {
     margin-left: 10px;
     padding: 6px 12px;
@@ -91,12 +111,15 @@
     border: none;
     cursor: pointer;
   }
+
   .exercise button:hover {
     background-color: #ffb3ba;
   }
 
   .result {
     font-weight: bold;
+    color: #C5705D;
+    font-size: 20px;
     margin-left: 10px;
   }
 
@@ -119,9 +142,9 @@
     animation: pop .9s ease-out forwards;
   }
   @keyframes pop {
-    0% { transform: translate(0,0) scale(1); opacity:1; }
-    50%{ transform: translate(calc(var(--x)*.5),calc(var(--y)*.4)) scale(1.1); opacity:1;}
-    100%{ transform: translate(var(--x),var(--y)) scale(.5); opacity:0;}
+    0% { transform: translate(0,0) scale(1); opacity:1;}
+    50% {transform: translate(calc(var(--x)*.5),calc(var(--y)*.4)) scale(1.1);opacity:1;}
+    100% {transform: translate(var(--x),var(--y)) scale(.5);opacity:0;}
   }
 </style>
 </head>
@@ -129,7 +152,7 @@
 <body>
 
 <header>
-  <a href="https://ketng91.github.io/lopanhthayket/" 
+  <a href="https://ketng91.github.io/lopanhthayket/"
      style="position:absolute; left:20px; top:20px; font-size:20px; 
             color:#7a4e3e; text-decoration:none;">
     <i class="fa-solid fa-house"></i> Lớp Anh thầy Kết
@@ -137,19 +160,16 @@
   Học từ vựng
 </header>
 
-
 <!-- Bộ chọn -->
 <div class="top-select">
   <select id="wordList">
-    <option value="1">Bộ từ vựng 1</option>
-    <option value="2">Bộ từ vựng 2</option>
+    <option value="1">Advertising </option>
+    <option value="2">Celebrity Endorsement</option>
   </select>
 </div>
 
-<!-- View file -->
-<div>
-  <iframe id="viewer" src="" allowfullscreen></iframe>
-</div>
+<!-- Danh sách từ vựng -->
+<div class="word-list" id="wordContainer"></div>
 
 <!-- Ôn tập -->
 <div class="review-box">
@@ -169,66 +189,149 @@
 
 <script>
 /********** DATA **********/
-const files = {
-  1: "https://docs.google.com/document/d/1kIqvMCwdESCUlU5sBkwwgO_7HO5gyVyO/edit?usp=drive_link&ouid=106439726873265563656&rtpof=true&sd=true",
-  2: "https://docs.google.com/document/d/YYYYYY/preview"
-};
-
 const data = {
   1: [
-    { en:"advertising campaign", vn:"chiến dịch quảng cáo" },
-{ en:"advertising revenue", vn:"doanh thu từ quảng cáo" },
-{ en:"consumerism", vn:"chủ nghĩa tiêu dùng" },
-{ en:"impulse buying", vn:"mua hàng theo cảm xúc, bốc đồng" },
-{ en:"celebrity endorsement", vn:"sự quảng bá sản phẩm bởi người nổi tiếng" },
-{ en:"endorse a product", vn:"chứng thực/quảng bá một sản phẩm" },
-
+    { en:"advertising campaign /ˈædvətaɪzɪŋ kæmˈpeɪn/", vn:"chiến dịch quảng cáo", tick:false },
+    { en:"advertising revenue /ˈædvətaɪzɪŋ ˈrevənjuː/", vn:"doanh thu từ quảng cáo", tick:false },
+    { en:"consumerism /kənˈsjuːmərɪzəm/", vn:"chủ nghĩa tiêu dùng", tick:false },
+    { en:"impulse buying /ˈɪmpʌls ˈbaɪɪŋ/", vn:"mua hàng bốc đồng", tick:false },
+    { en:"celebrity endorsement /səˈlebrəti ɪnˈdɔːsmənt/", vn:"quảng bá bởi người nổi tiếng", tick:false },
+    { en:"endorse a product /ɪnˈdɔːs ə ˈprɒdʌkt/", vn:"chứng thực quảng bá sản phẩm", tick:false },
+{ en:"brand ambassador /brænd æmˈbæsədə(r)/", vn:"đại sứ thương hiệu", tick:false },
+{ en:"brand loyalty /brænd ˈlɔɪəlti/", vn:"sự trung thành với thương hiệu", tick:false },
+{ en:"brand image /brænd ˈɪmɪdʒ/", vn:"hình ảnh thương hiệu trong mắt công chúng", tick:false },
+{ en:"brand recognition /brænd ˌrekəɡˈnɪʃn/", vn:"sự nhận diện thương hiệu", tick:false },
+{ en:"consumer behavior /kənˈsjuːmə bɪˈheɪvjə(r)/", vn:"hành vi tiêu dùng", tick:false },
+{ en:"target audience /ˈtɑːɡɪt ˈɔːdiəns/", vn:"đối tượng khách hàng mục tiêu", tick:false },
+{ en:"targeted advertising /ˈtɑːɡɪtɪd ˈædvətaɪzɪŋ/", vn:"quảng cáo nhắm đúng đối tượng", tick:false },
+{ en:"deceptive advertising /dɪˈseptɪv ˈædvətaɪzɪŋ/", vn:"quảng cáo lừa dối", tick:false },
+{ en:"misleading advertisement /ˌmɪsˈliːdɪŋ ədˈvɜːtɪsmənt/", vn:"quảng cáo gây hiểu lầm", tick:false },
+{ en:"persuasive techniques /pəˈsweɪsɪv tekˈniːks/", vn:"kỹ thuật thuyết phục", tick:false },
+{ en:"subliminal message /sʌbˈlɪmɪnl ˈmesɪdʒ/", vn:"thông điệp ngầm", tick:false },
+{ en:"clickbait /ˈklɪkbeɪt/", vn:"tiêu đề giật gân để câu view", tick:false },
+{ en:"false claims /fɔːls kleɪmz/", vn:"tuyên bố sai lệch", tick:false },
+{ en:"distorted reality /dɪˈstɔːtɪd riˈæləti/", vn:"thực tế bị bóp méo", tick:false },
+{ en:"exaggerated benefits /ɪɡˈzædʒəreɪtɪd ˈbenɪfɪts/", vn:"lợi ích được phóng đại", tick:false },
+{ en:"visual appeal /ˈvɪʒuəl əˈpiːl/", vn:"sức hấp dẫn hình ảnh", tick:false },
+{ en:"emotional appeal /ɪˈməʊʃənl əˈpiːl/", vn:"tác động cảm xúc", tick:false },
+{ en:"manipulative /məˈnɪpjələtɪv/", vn:"mang tính thao túng", tick:false },
+{ en:"manipulate /məˈnɪpjuleɪt/", vn:"thao túng", tick:false },
+{ en:"eye-catching /ˈaɪˌkætʃɪŋ/", vn:"bắt mắt", tick:false },
+{ en:"attention-grabbing /əˈtenʃn ˈɡræbɪŋ/", vn:"thu hút sự chú ý", tick:false },
+{ en:"buzz marketing /bʌz ˈmɑːkɪtɪŋ/", vn:"tiếp thị truyền miệng", tick:false },
+{ en:"viral marketing /ˈvaɪrəl ˈmɑːkɪtɪŋ/", vn:"tiếp thị lan truyền", tick:false },
+{ en:"mass marketing /mæs ˈmɑːkɪtɪŋ/", vn:"tiếp thị đại trà", tick:false },
+{ en:"product placement /ˈprɒdʌkt ˈpleɪsmənt/", vn:"đặt sản phẩm trong phim/TV", tick:false },
+{ en:"commercial break /kəˈmɜːʃl breɪk/", vn:"thời gian quảng cáo chen giữa chương trình", tick:false },
+{ en:"call to action /kɔːl tuː ˈækʃn/", vn:"lời kêu gọi hành động", tick:false },
+{ en:"hard sell /hɑːd sel/", vn:"bán hàng ép buộc", tick:false },
+{ en:"soft sell /sɒft sel/", vn:"bán hàng nhẹ nhàng", tick:false },
+{ en:"niche market /niːʃ ˈmɑːkɪt/", vn:"thị trường ngách", tick:false },
+{ en:"overexposure to ads /ˌəʊvərɪkˈspəʊʒə tuː ædz/", vn:"tiếp xúc quá mức với quảng cáo", tick:false },
+{ en:"product launch /ˈprɒdʌkt lɔːntʃ/", vn:"ra mắt sản phẩm", tick:false },
+{ en:"market saturation /ˈmɑːkɪt ˌsætʃəˈreɪʃn/", vn:"bão hòa thị trường", tick:false },
+{ en:"ad-saturated environment /æd ˈsætʃəreɪtɪd ɪnˈvaɪrənmənt/", vn:"môi trường bão hòa quảng cáo", tick:false },
+{ en:"user-generated content /ˈjuːzə ˈdʒenəreɪtɪd ˈkɒntent/", vn:"nội dung do người dùng tạo", tick:false },
   ],
   2: [
-    { en:"urban", vn:"thuộc thành thị" },
-    { en:"rural", vn:"nông thôn" },
-    { en:"sustainable", vn:"bền vững" }
+    { en:"endorsement /ɪnˈdɔːsmənt/", vn:"sự quảng bá, chứng thực sản phẩm của người nổi tiếng", tick:false },
+{ en:"consumer perception /kənˈsjuːmə pəˈsepʃn/", vn:"nhận thức của người tiêu dùng", tick:false },
+{ en:"brand equity /brænd ˈekwɪti/", vn:"giá trị thương hiệu", tick:false },
+{ en:"celebrity appeal /səˈlebrəti əˈpiːl/", vn:"sức hút của người nổi tiếng", tick:false },
+{ en:"brand recall /brænd rɪˈkɔːl/", vn:"khả năng nhớ lại thương hiệu", tick:false },
+{ en:"market differentiation /ˈmɑːkɪt ˌdɪfərenʃiˈeɪʃn/", vn:"sự khác biệt hóa thị trường", tick:false },
+{ en:"aspirational image /ˌæspəˈreɪʃənl ˈɪmɪdʒ/", vn:"hình ảnh đáng khao khát", tick:false },
+{ en:"public persona /ˈpʌblɪk pɜːˈsəʊnə/", vn:"hình ảnh công chúng của người nổi tiếng", tick:false },
+{ en:"mass appeal /mæs əˈpiːl/", vn:"sức hút đại chúng", tick:false },
+{ en:"influencer marketing /ˈɪnfluənsə ˈmɑːkɪtɪŋ/", vn:"tiếp thị qua người có ảnh hưởng", tick:false },
+{ en:"consumer trust /kənˈsjuːmə trʌst/", vn:"sự tin tưởng của người tiêu dùng", tick:false },
+{ en:"brand loyalty /brænd ˈlɔɪəlti/", vn:"lòng trung thành với thương hiệu", tick:false },
+{ en:"celebrity endorsement deal /səˈlebrəti ɪnˈdɔːsmənt diːl/", vn:"hợp đồng quảng bá sản phẩm của người nổi tiếng", tick:false },
+{ en:"public backlash /ˈpʌblɪk ˈbæklæʃ/", vn:"phản ứng dữ dội của công chúng", tick:false },
+{ en:"credibility /ˌkredəˈbɪləti/", vn:"độ tin cậy", tick:false },
+{ en:"brand positioning /brænd pəˈzɪʃənɪŋ/", vn:"định vị thương hiệu", tick:false },
+{ en:"celebrity scandal /səˈlebrəti ˈskændl/", vn:"bê bối của người nổi tiếng", tick:false },
+{ en:"target demographic /ˈtɑːɡɪt ˌdeməˈɡræfɪk/", vn:"nhóm khách hàng mục tiêu", tick:false },
+{ en:"perceived authenticity /pəˈsiːvd ˌɔːθenˈtɪsəti/", vn:"tính chân thực theo cảm nhận", tick:false },
+{ en:"image tarnishing /ˈɪmɪdʒ ˈtɑːnɪʃɪŋ/", vn:"làm xấu hình ảnh", tick:false },
+{ en:"association effect /əˌsəʊsiˈeɪʃn ɪˈfekt/", vn:"hiệu ứng liên tưởng", tick:false },
+{ en:"celebrity-driven campaign /səˈlebrəti ˈdrɪvn kæmˈpeɪn/", vn:"chiến dịch do người nổi tiếng dẫn dắt", tick:false },
+{ en:"emotional branding /ɪˈməʊʃənl ˈbrændɪŋ/", vn:"xây dựng thương hiệu dựa trên cảm xúc", tick:false },
+{ en:"cultural resonance /ˈkʌltʃərəl ˈrezənəns/", vn:"sự cộng hưởng văn hóa", tick:false },
+{ en:"strategic alignment /strəˈtiːdʒɪk əˈlaɪnmənt/", vn:"sự liên kết chiến lược", tick:false },
+{ en:"celebrity saturation /səˈlebrəti ˌsætʃuˈreɪʃn/", vn:"sự bão hòa người nổi tiếng", tick:false },
+{ en:"overexposure /ˌəʊvərɪkˈspəʊʒə(r)/", vn:"việc lộ diện quá mức", tick:false },
+{ en:"commercial gain /kəˈmɜːʃl ɡeɪn/", vn:"lợi ích thương mại", tick:false },
+{ en:"moral scrutiny /ˈmɒrəl ˈskruːtəni/", vn:"sự xem xét đạo đức", tick:false },
+
   ]
 };
 
 const exercises = {
   1: [
     {q:"The company launched a massive ________ to promote its new phone.", a:"advertising campaign"},
-{q:"Most social media platforms rely heavily on ________ to operate.", a:"advertising revenue"},
-{q:"Modern societies are often driven by a culture of ________.", a:"consumerism"},
-{q:"Many online shoppers fall into the trap of ________ during big sales.", a:"impulse buying"},
-{q:"Brands use ________ to create trust and attract more customers.", a:"celebrity endorsement"},
-{q:"Famous athletes are often paid large sums to ________.", a:"endorse a product"},
-
+    {q:"Most social media platforms rely heavily on ________ to operate.", a:"advertising revenue"},
+    {q:"Modern societies are often driven by a culture of ________.", a:"consumerism"},
+    {q:"Many online shoppers fall into the trap of ________ during big sales.", a:"impulse buying"},
+    {q:"Brands use ________ to create trust.", a:"celebrity endorsement"},
+    {q:"Athletes are paid large sums to ________.", a:"endorse a product"}
   ],
   2: [
-    {q:"Cities are ________ areas.", a:"urban"},
-    {q:"Farming is common in ________ regions.", a:"rural"}
+    {q:"Famous athletes can boost sales through product ________.", a:"endorsement"},
+{q:"Companies must protect their ________ by maintaining consistent quality.", a:"brand equity"},
+{q:"A singer with strong ________ can attract millions of new customers.", a:"celebrity appeal"},
+{q:"Brands aim to build long-term ________ among returning customers.", a:"brand loyalty"},
+{q:"A poorly handled ________ may damage both the celebrity and the brand.", a:"celebrity scandal"},
+
   ]
 };
 
-let currList = 1, listCopy = [], index = 0;
+let currList = 1, listCopy=[], index=0;
 
-/******** LOAD LIST ********/
+/********** LOAD LIST **********/
 function loadList(){
   currList = document.getElementById("wordList").value;
-  document.getElementById("viewer").src = files[currList];
   listCopy = [...data[currList]];
-  index = -1;
+  renderWords();
+  index=-1;
   nextWord();
   loadExercises();
 }
+
 document.getElementById("wordList").onchange = loadList;
 loadList();
 
-/******** REVIEW ********/
+/********** RENDER & SORT **********/
+function renderWords(){
+  const box=document.getElementById("wordContainer");
+  box.innerHTML="";
+
+  let sorted=[...data[currList]].sort((a,b)=>b.tick - a.tick);
+
+  sorted.forEach(item=>{
+    let realIndex = data[currList].indexOf(item);
+    box.innerHTML+=`
+      <div class="word-row">
+        <span>${item.en}: ${item.vn}</span>
+        <input type="checkbox" ${item.tick?"checked":""} onclick="toggleTick(${realIndex})">
+      </div>`;
+  });
+}
+
+/********** TICK UPDATE **********/
+function toggleTick(realIndex){
+  data[currList][realIndex].tick = !data[currList][realIndex].tick;
+  renderWords();
+}
+
+/********** REVIEW **********/
 function nextWord(){
-  document.getElementById("answer").innerHTML = "";
+  document.getElementById("answer").innerHTML="";
   if(listCopy.length===0){
-    document.getElementById("vietWord").innerHTML="🎉 Hết từ ôn tập rồi!";
+    document.getElementById("vietWord").innerHTML="🎉 Bạn đã học xong hết!";
     return;
   }
-  index = Math.floor(Math.random()*listCopy.length);
+  index=Math.floor(Math.random()*listCopy.length);
   document.getElementById("vietWord").innerHTML=listCopy[index].vn;
 }
 
@@ -237,22 +340,23 @@ function know(){
   listCopy.splice(index,1);
   nextWord();
 }
+
 function dontKnow(){
-  document.getElementById("answer").innerHTML = listCopy[index].en;
+  document.getElementById("answer").innerHTML=listCopy[index].en;
 }
 
-/******** EXERCISES ********/
+/********** EXERCISES **********/
 function loadExercises(){
   const box=document.getElementById("exercise");
   box.innerHTML="";
   exercises[currList].forEach((item,i)=>{
     box.innerHTML+=`
-      <div style="margin:10px 0;">
-        ${i+1}. ${item.q}
-        <input id="ex${i}">
-        <button onclick="checkEx(${i})">Check</button>
-        <span id="res${i}" class="result"></span>
-      </div>`;
+    <div style="margin:10px 0;">
+      ${i+1}. ${item.q}
+      <input id="ex${i}">
+      <button onclick="checkEx(${i})">Check</button>
+      <span id="res${i}" class="result"></span>
+    </div>`;
   });
 }
 
@@ -260,11 +364,11 @@ function checkEx(i){
   const user=document.getElementById("ex"+i).value.trim().toLowerCase();
   const ans=exercises[currList][i].a.toLowerCase();
   const box=document.getElementById("res"+i);
-  if(user===ans) box.innerHTML=`✔ Correct`;
-  else box.innerHTML=`✘ ${ans}`;
+  if(user===ans) box.innerHTML="✔ Correct";
+  else box.innerHTML="✘ "+ans;
 }
 
-/******** FIREWORK ********/
+/********** FIREWORK **********/
 function firework(){
   for(let i=0;i<25;i++){
     const c=document.createElement("div");

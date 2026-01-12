@@ -170,6 +170,7 @@
     <option value="3">Global Warming</option>
     <option value="4">Urbanisation</option>
     <option value="5">City & Countryside</option>
+    <option value="6">Crime: Causes</option>
 
 
 
@@ -385,6 +386,28 @@ const data = {
 { en:"civic engagement /ˈsɪv.ɪk ɪnˈɡeɪdʒ.mənt/", vn:"sự tham gia của người dân", tick:false },
   ],
 
+  6: [
+{ en:"socioeconomic inequality /ˌsəʊ.si.əʊˌek.əˈnɒ.mɪk ˌɪn.ɪˈkwɒ.lə.ti/ /ˌsoʊ.si.oʊˌek.əˈnɑː.mɪk ˌɪn.əˈkwɑː.lə.ti/", vn:"bất bình đẳng ktế – xã hội", tick:false },
+{ en:"marginalized communities /ˈmɑː.dʒɪ.nə.laɪzd kəˈmjuː.nə.tiz/ /ˈmɑːr.dʒə.nə.laɪzd kəˈmjuː.nə.tiz/", vn:"cộng đồng bị gạt ra ngoài lề xã hội", tick:false },
+{ en:"financial desperation /faɪˈnæn.ʃəl ˌdes.pəˈreɪ.ʃən/ /faɪˈnæn.ʃəl ˌdes.pəˈreɪ.ʃən/", vn:"sự tuyệt vọng tài chính", tick:false },
+{ en:"lack of parental supervision /læk əv pəˈren.təl ˌsuː.pəˈvɪʒ.ən/ /læk əv pəˈren.təl ˌsuː.pərˈvɪʒ.ən/", vn:"thiếu sự giám sát của cha mẹ", tick:false },
+{ en:"broken home /ˌbrəʊ.kən ˈhəʊm/ /ˌbroʊ.kən hoʊm/", vn:"gia đình tan vỡ", tick:false },
+{ en:"emotional neglect /ɪˈməʊ.ʃən.əl nɪˈɡlekt/ /ɪˈmoʊ.ʃən.əl nɪˈɡlekt/", vn:"sự bỏ bê tình cảm", tick:false },
+{ en:"educational disadvantage /ˌed.jʊˈkeɪ.ʃən.əl ˌdɪs.ədˈvɑːn.tɪdʒ/ /ˌedʒ.uˈkeɪ.ʃən.əl ˌdɪs.ədˈvæn.tɪdʒ/", vn:"thiệt thòi về giáo dục", tick:false },
+{ en:"school dropout /skuːl ˈdrɒp.aʊt/ /skuːl ˈdrɑːp.aʊt/", vn:"bỏ học", tick:false },
+{ en:"low literacy levels /ləʊ ˈlɪt.ər.ə.si ˈlev.əlz/ /loʊ ˈlɪt̬.ɚ.ə.si ˈlev.əlz/", vn:"trình độ học vấn thấp", tick:false },
+{ en:"peer pressure /ˈpɪə ˌpreʃ.ər/ /ˈpɪr ˌpreʃ.ər/", vn:"áp lực từ bạn bè đồng trang lứa", tick:false },
+{ en:"gang affiliation /ɡæŋ əˌfɪl.iˈeɪ.ʃən/ /ɡæŋ əˌfɪl.iˈeɪ.ʃən/", vn:"sự tham gia vào băng nhóm", tick:false },
+{ en:"exposure to violence /ɪkˈspəʊ.ʒər tə ˈvaɪə.ləns/ /ɪkˈspoʊ.ʒər tə ˈvaɪə.ləns/", vn:"tiếp xúc với bạo lực", tick:false },
+{ en:"media glorification of crime /ˈmiː.di.ə ˌɡlɒ.rɪ.fɪˈkeɪ.ʃən əv kraɪm/ /ˈmiː.di.ə ˌɡlɔːr.ɪ.fɪˈkeɪ.ʃən əv kraɪm/", vn:"truyền thông tôn vinh tội phạm", tick:false },
+{ en:"substance abuse /ˈsʌb.stəns əˈbjuːs/ /ˈsʌb.stəns əˈbjuːs/", vn:"lạm dụng chất kích thích", tick:false },
+{ en:"addiction-driven crimes /əˈdɪk.ʃən ˈdrɪv.ən kraɪmz/ /əˈdɪk.ʃən ˈdrɪv.ən kraɪmz/", vn:"tội phạm do nghiện ngập gây ra", tick:false },
+{ en:"urban poverty /ˈɜː.bən ˈpɒv.ə.ti/ /ˈɝː.bən ˈpɑː.vɚ.ti/", vn:"nghèo đói ở đô thị", tick:false },
+{ en:"lack of social support systems /læk əv ˈsəʊ.ʃəl səˈpɔːt ˈsɪs.təmz/ /læk əv ˈsoʊ.ʃəl səˈpɔːrt ˈsɪs.təmz/", vn:"thiếu hệ thống hỗ trợ xã hội", tick:false },
+{ en:"intergenerational crime cycle /ˌɪn.tə.dʒen.əˈreɪ.ʃən.əl kraɪm ˈsaɪ.kəl/ /ˌɪn.t̬ɚ.dʒen.əˈreɪ.ʃən.əl kraɪm ˈsaɪ.kəl/", vn:"vòng lặp tội phạm qua nhiều thế hệ", tick:false },
+{ en:"moral decay /ˈmɒr.əl dɪˈkeɪ/ /ˈmɔːr.əl dɪˈkeɪ/", vn:"sự suy thoái đạo đức", tick:false },
+  ],
+
 };
 
 const exercises = {
@@ -433,8 +456,13 @@ const exercises = {
 {q:"Lack of access to the internet widens the ________.", a:"digital divide"},
 {q:"Modern cities provide many ________.", a:"urban amenities"},
   ],
-
-
+  6: [
+{q:"Young people may commit offenses because of severe ________.", a:"financial desperation"},
+{q:"Some teenagers fall into crime due to constant ________.", a:"peer pressure"},
+{q:"Growing up in a ________ often leads to emotional instability.", a:"broken home"},
+{q:"Many youths join illegal activities through ________.", a:"gang affiliation"},
+{q:"Children without guidance may be influenced by a lack of ________.", a:"parental supervision"},
+  ],
 
 };
 

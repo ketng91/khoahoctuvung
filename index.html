@@ -49,18 +49,20 @@
     font-size: 22px;
   }
 
-  .word-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 10px;
-    border-bottom: 1px dashed #ffb3ba;
-  }
-  .word-row:last-child { border-bottom: none; }
+.word-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-bottom: 1px dashed #ffb3ba;
+  transition: background-color .15s ease-in-out;
+}
+.word-row:last-child { border-bottom: none; }
 
-  .word-row input {
-    transform: scale(1.4);
-    cursor: pointer;
-  }
+/* Hover đổi màu */
+.word-row:hover {
+  background-color: #fffacd; /* xanh nhạt dễ thấy */
+  cursor: pointer;
+}
 
   /* Ôn tập */
   .review-box {

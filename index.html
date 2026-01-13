@@ -16,13 +16,59 @@
   }
 
   header {
-    background-color: #ffd6ba;
-    padding: 25px;
-    font-size: 32px;
-    font-weight: bold;
-    color: #7a4e3e;
-    position: relative;
+  background-color: #ffd6ba;
+  padding: 15px 20px;
+  font-weight: bold;
+  color: #7a4e3e;
+  display: flex;
+  flex-wrap: wrap;       
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.header-left a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  color: #7a4e3e;
+  text-decoration: none;
+}
+
+.header-left a i {
+  font-size: 28px;
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+  font-size: 32px;
+}
+
+/* MEDIA QUERY cho điện thoại */
+@media (max-width: 480px) {
+  header {
+    padding: 10px 15px;
   }
+  .header-left a {
+    font-size: 18px;
+  }
+  .header-left a i {
+    font-size: 20px;
+  }
+  .header-center {
+    font-size: 22px;
+  }
+}
+
 
   .top-select {
     display: flex;
@@ -154,12 +200,14 @@
 <body>
 
 <header>
-  <a href="https://ketng91.github.io/lopanhthayket/"
-     style="position:absolute; left:20px; top:20px; font-size:20px; 
-            color:#7a4e3e; text-decoration:none;">
-    <i class="fa-solid fa-house"></i> Lớp Anh thầy Kết
-  </a>
-  Học từ vựng
+  <div class="header-left">
+    <a href="https://ketng91.github.io/lopanhthayket/">
+      <i class="fa-solid fa-house"></i> Lớp Anh thầy Kết
+    </a>
+  </div>
+  <div class="header-center">
+    Khoá Vocab
+  </div>
 </header>
 
 <!-- Bộ chọn -->
@@ -632,19 +680,19 @@ const exercises = {
 {q:"Millions of people live in poor conditions in a ________.", a:"slum area"},
 {q:"Many families struggle to find homes because of a ________.", a:"housing shortage"},
 {q:"Living conditions are often worse in areas of ________.", a:"urban poverty"},
-{q:"New technology helps cities improve ________.", a:"pollution control"},
-{q:"Planting trees and parks increases ________.", a:"green space"},
+{q:"New technology helps cities improve ________control.", a:"pollution"},
+{q:"Planting trees and parks increases ________ space.", a:"green"},
   ],
   5: [
 {q:"New York is a large and modern ________ city.", a:"metropolitan"},
-{q:"Cities build more ________ to house growing populations.", a:"high-rise building"},
+{q:"Cities build more ________ building to house growing populations.", a:"high-rise"},
 {q:"Improving the ________ can reduce traffic congestion.", a:"public transport"},
-{q:"The ________ system in major cities is much higher than in rural areas.", a:"cost of living"},
-{q:"Factories contribute to the rising ________.", a:"pollution level"},
-{q:"Villages often offer a more ________.", a:"tight-knit community"},
+{q:"The ________ of living system in major cities is much higher than in rural areas.", a:"cost"},
+{q:"Factories contribute to the rising ________ level.", a:"pollution"},
+{q:"Villages often offer a more ________ community.", a:"tight-knit"},
 {q:"Farmers are often ________, growing their own food.", a:"self-sufficient"},
-{q:"Lack of access to the internet widens the ________.", a:"digital divide"},
-{q:"Modern cities provide many ________.", a:"urban amenities"},
+{q:"Lack of access to the internet widens the digital ________.", a:"divide"},
+{q:"Modern cities provide many urban ________.", a:"amenities"},
   ],
   6: [
 {q:"Young people may commit offenses because of severe ________.", a:"financial desperation"},
@@ -662,7 +710,7 @@ const exercises = {
   ],
   8: [
 {q:"Students with strong money management skills show high levels of financial ________.", a:"literacy"},
-{q:"The goal of many families is to achieve ________ mobility through education.", a:"upward"},
+{q:"The goal of many families is to achieve upward ________ through education.", a:"mobility"},
 {q:"Schools aim to build learners’ ________ thinking through debate and reflection.", a:"critical"},
 {q:"Good communication and teamwork depend heavily on ________ skills.", a:"interpersonal"},
 {q:"When learning continues beyond school, people engage in ________ learning.", a:"lifelong"},
@@ -670,7 +718,7 @@ const exercises = {
 {q:"Without ________ access, students from low-income areas fall behind.", a:"equitable"},
 {q:"Designing what students will learn each semester is called curriculum ________.", a:"design"},
 {q:"Growing up ready for structured schooling requires a level of school ________.", a:"readiness"},
-{q:"Studying abroad helps students develop ________ competence in diverse cultures.", a:"global"},
+{q:"Studying abroad helps students develop global ________ in diverse cultures.", a:"competence"},
   ],
   9: [
 {q:"Teachers must show ________ to understand students’ emotions and struggles.", a:"empathy"},
@@ -684,7 +732,7 @@ const exercises = {
 {q:"Students should rely on ________ resources to avoid misinformation.", a:"verified"},
 {q:"Many learners struggle due to the digital ________ between rich and poor areas.", a:"divide"},
 {q:"Governments must ensure ________ access so no student is left behind.", a:"equitable"},
-{q:"Modern libraries provide ________ repositories of books, journals, and archives.", a:"online"},
+{q:"Modern libraries provide online ________  of books, journals, and archives.", a:"repositories"},
   ],
   11: [
 {q:"Good teachers aim to ________ students’ curiosity and love for learning.", a:"stimulate"},

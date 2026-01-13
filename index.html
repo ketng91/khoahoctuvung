@@ -280,6 +280,29 @@ select {
   </select>
 </div>
 
+
+
+<script>
+// Bắt sự kiện Enter cho tất cả các ô input trong bài tập
+document.addEventListener("DOMContentLoaded", function() {
+  const exerciseInputs = document.querySelectorAll(".exercise input");
+
+  exerciseInputs.forEach(input => {
+    input.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {      // Kiểm tra nếu nhấn Enter
+        e.preventDefault();          // Ngăn việc xuống dòng mặc định
+        const checkBtn = this.nextElementSibling; // giả định nút Check ngay sau input
+        if (checkBtn && checkBtn.tagName === "BUTTON") {
+          checkBtn.click();         // kích hoạt nút Check
+        }
+      }
+    });
+  });
+});
+</script>
+
+
+
 <!-- Danh sách từ vựng -->
 <div class="word-list" id="wordContainer"></div>
 
@@ -908,11 +931,18 @@ function loadExercises(){
 }
 
 function checkEx(i){
-  const user=document.getElementById("ex"+i).value.trim().toLowerCase();
-  const ans=exercises[currList][i].a.toLowerCase();
-  const box=document.getElementById("res"+i);
-  if(user===ans) box.innerHTML="✔ Correct";
-  else box.innerHTML="✘ "+ans;
+  const user = document.getElementById("ex"+i).value.trim().toLowerCase();
+  const ans = exercises[currList][i].a.toLowerCase();
+  const box = document.getElementById("res"+i);
+
+  if(user === ans) {
+    box.innerHTML = "✔ Correct";
+    box.style.color = "#28a745"; // chữ Correct màu xanh lá
+    firework(); // gọi pháo hoa
+  } else {
+    box.innerHTML = "✘ " + exercises[currList][i].a;
+    box.style.color = "#C5705D"; // chữ sai màu đỏ
+  }
 }
 
 /********** FIREWORK **********/

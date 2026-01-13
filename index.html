@@ -162,14 +162,23 @@ select {
     font-size: 26px;
     border-radius: 12px;
   }
+  .review-buttons {
+  display: flex;
+  justify-content: center;   /* hoặc space-between / space-around / space-evenly */
+  gap: 10px;                 /* khoảng cách giữa nút */
+}
   .review-buttons button {
     background-color: #a0e7e5;
-    border: none;
-    padding: 12px 20px;
-    font-size: 20px;
-    margin: 10px;
-    border-radius: 8px;
-    cursor: pointer;
+  border: none;
+  width: 120px;
+  height: 40px;
+  font-size: 18px; 
+  margin: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   }
   .review-buttons button:hover {
     background-color: #ffb3ba;

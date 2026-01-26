@@ -285,6 +285,8 @@ select {
     <option value="22">Communication</option>
     <option value="23">Society</option>
     <option value="24">Crime & Law</option>
+    <option value="25">Economy</option>
+    <option value="26">Transport</option>
 
 
   </select>
@@ -368,6 +370,7 @@ const data = {
 { en:"manipulative /məˈnɪpjələtɪv/", vn:"mang tính thao túng", tick:false },
 { en:"manipulate /məˈnɪpjuleɪt/", vn:"thao túng", tick:false },
 { en:"distort the truth /dɪˈstɔːrt ðə truːθ/", vn:"bóp méo sự thật", tick:false },
+{ en:"take something with a grain of salt /teɪk ˈsʌm.θɪŋ wɪð ə ɡreɪn əv sɔːlt/", vn:"đón nhận thông tin một cách hoài nghi, không tin hoàn toàn", tick:false },
     { en:"advertising campaign /ˈædvətaɪzɪŋ kæmˈpeɪn/", vn:"chiến dịch quảng cáo", tick:false },
     { en:"advertising revenue /ˈædvətaɪzɪŋ ˈrevənjuː/", vn:"doanh thu từ quảng cáo", tick:false },
     { en:"consumerism /kənˈsjuːmərɪzəm/", vn:"chủ nghĩa tiêu dùng", tick:false },
@@ -753,16 +756,19 @@ const data = {
   ],
   14: [
 { en:"irreversible ecological damage /ˌɪrɪˈvɝːrsəbl ˌiːkəˈlɑːdʒɪkəl ˈdæmɪdʒ/", vn:"thiệt hại sinh thái không thể đảo ngược", tick:false },
+{ en:"irreparably damaged /ɪˈrep.ɚ.ə.bli ˈdæm.ɪdʒd/", vn:"bị tổn hại không thể khắc phục", tick:false },
 { en:"carbon footprint /ˈkɑːr.bən ˈfʊt.prɪnt/", vn:"dấu chân carbon (lượng khí thải carbon)", tick:false },
 { en:"environmental degradation /ɪnˌvaɪ.rənˈmen.t̬əl ˌdeɡ.rəˈdeɪ.ʃən/", vn:"sự suy thoái môi trường", tick:false },
 { en:"deforestation /ˌdiːˌfɔːr.ɪˈsteɪ.ʃən/", vn:"nạn phá rừng", tick:false },
 { en:"biodiversity /ˌbaɪ.oʊ.daɪˈvɝː.sə.t̬i/", vn:"đa dạng sinh học", tick:false },
 { en:"rapid industrialization /ˈræp.ɪd ɪnˌdʌs.tri.ə.ləˈzeɪ.ʃən/", vn:"công nghiệp hóa nhanh chóng", tick:false },
+{ en:"the tip of the iceberg /ðə tɪp əv ði ˈaɪs.bɝːɡ/", vn:"chỉ là phần nổi của tảng băng chìm", tick:false },
   ],
   15: [
 { en:"push oneself to the limit /pʊʃ wʌnˈself tə ðə ˈlɪmɪt/", vn:"đẩy bản thân đến giới hạn", tick:false },
 { en:"foster mental resilience /ˈfɑːstər ˈmen.t̬əl rɪˈzɪl.jəns/", vn:"bồi dưỡng khả năng phục hồi tinh thần", tick:false },
 { en:"build stamina /bɪld ˈstæmɪnə/", vn:"xây dựng thể lực và sức bền", tick:false },
+{ en:"get a second wind /ɡet ə ˈsek.ənd wɪnd/", vn:"lấy lại sức, có động lực trở lại", tick:false },
   ],
   16: [
 { en:"sedentary lifestyle /ˈsed.ənˌter.i ˈlaɪf.staɪl/", vn:"lối sống ít vận động", tick:false },
@@ -772,11 +778,15 @@ const data = {
 { en:"chronic health issues /ˈkrɑː.nɪk helθ ˈɪʃ.uːz/", vn:"các vấn đề sức khỏe mãn tính", tick:false },
 { en:"the excessive consumption of /ði ɪkˈses.ɪv kənˈsʌmp.ʃən əv/", vn:"việc tiêu thụ quá mức", tick:false },
 { en:"strict diets /strɪkt ˈdaɪ.əts/", vn:"chế độ ăn kiêng nghiêm ngặt", tick:false },
+{ en:"back on one's feet /bæk ɑːn wʌnz fiːt/", vn:"hồi phục, đứng dậy sau khó khăn", tick:false },
+
   ],
   17: [
 { en:"rote learning /roʊt ˈlɝː.nɪŋ/", vn:"học vẹt, học thuộc lòng máy móc", tick:false },
 { en:"incorporate sth into the curriculum /ɪnˈkɔːr.pə.reɪt ˈsʌm.θɪŋ ˈɪn.tuː ðə kəˈrɪk.jə.ləm/", vn:"lồng ghép (nội dung gì đó) vào chương trình học", tick:false },
 { en:"tertiary education /ˈtɝː.ʃer.i ˌedʒ.uˈkeɪ.ʃən/", vn:"giáo dục bậc đại học và sau đại học", tick:false },
+{ en:"sail through something /seɪl θruː ˈsʌm.θɪŋ/", vn:"vượt qua một việc gì đó rất dễ dàng", tick:false },
+
   ],
   18: [
 { en:"a massive tourist trap /ə ˈmæsɪv ˈtʊrɪst træp/", vn:"một điểm du lịch thương mại hóa quá mức (bẫy du lịch)", tick:false },
@@ -788,28 +798,37 @@ const data = {
 { en:"evoke strong emotions (in sb) /ɪˈvoʊk strɔːŋ ɪˈmoʊ.ʃənz (ɪn ˈsʌm.bɑː.di)/", vn:"gợi lên cảm xúc mạnh mẽ (ở ai đó)", tick:false },
 { en:"a masterpiece of craftsmanship /ə ˈmæs.tɚ.piːs əv ˈkræfts.mən.ʃɪp/", vn:"một kiệt tác của tay nghề thủ công", tick:false },
 { en:"aesthetic appeal /iːsˈθet̬.ɪk əˈpiːl/", vn:"sức hấp dẫn về mặt thẩm mỹ", tick:false },
+{ en:"a picture is worth a thousand words /ə ˈpɪk.tʃɚ ɪz wɝːθ ə ˈθaʊ.zənd wɝːdz/", vn:"một hình ảnh giá trị hơn ngàn lời nói", tick:false },
   ],
   20: [
 { en:"a tight-knit family /ə ˌtaɪtˈnɪt ˈfæməli/", vn:"một gia đình gắn bó khăng khít", tick:false },
 { en:"nurture core values (in sb) /ˈnɝːtʃɚ kɔːr ˈvæl.juːz (ɪn ˈsʌm.bɑː.di)/", vn:"nuôi dưỡng các giá trị cốt lõi (ở ai đó)", tick:false },
 { en:"parental guidance /pəˈren.t̬əl ˈɡaɪ.dəns/", vn:"sự định hướng, chỉ dẫn của cha mẹ", tick:false },
 { en:"navigate the dangers of /ˈnæv.ɪ.ɡeɪt ðə ˈdeɪn.dʒɚz əv/", vn:"đối phó / vượt qua những nguy cơ của", tick:false },
+{ en:"through thick and thin /θruː θɪk ænd θɪn/", vn:"qua mọi khó khăn, gian khổ", tick:false },
+{ en:"stand by each other /stænd baɪ iːtʃ ˈʌð.ɚ/", vn:"luôn ủng hộ, sát cánh bên nhau", tick:false },
   ],
   21: [
-{ en:"technological breakthrough /ˌtek.nəˈlɑː.dʒɪ.kəl ˈbreɪk.θruː/", vn:"bước đột phá công nghệ", tick:false },
+{ en:"technological breakthrough (in sth) /ˌtek.nəˈlɑː.dʒɪ.kəl ˈbreɪk.θruː/", vn:"bước đột phá công nghệ", tick:false },
 { en:"planned obsolescence /ˌplænd ˌɑːb.səˈles.əns/", vn:"sự lỗi thời có chủ đích (do nhà sản xuất thiết kế)", tick:false },
 { en:"bridge the digital divide /brɪdʒ ðə ˈdɪdʒ.ɪ.t̬əl dɪˈvaɪd/", vn:"thu hẹp khoảng cách số", tick:false },
+{ en:"cutting-edge /ˈkʌt̬.ɪŋ ˌedʒ/", vn:"tiên tiến, tối tân", tick:false },
+{ en:"a double-edged sword /ə ˌdʌb.əlˈedʒd sɔːrd/", vn:"con dao hai lưỡi (vừa lợi vừa hại)", tick:false },
+{ en:"high-end gadgets /ˌhaɪˈend ˈɡædʒ.ɪts/", vn:"thiết bị công nghệ cao cấp", tick:false },
+
   ],
   22: [
 { en:"build rapport with sb /bɪld ræˈpɔːr wɪð ˈsʌm.bɑː.di/", vn:"xây dựng mối quan hệ thân thiện với ai đó", tick:false },
 { en:"non-verbal cues /ˌnɑːnˈvɝː.bəl kjuːz/", vn:"tín hiệu phi ngôn ngữ (cử chỉ, ánh mắt, ngôn ngữ cơ thể)", tick:false },
 { en:"strong interpersonal skills /strɔːŋ ˌɪn.t̬ɚˈpɝː.sə.nəl skɪlz/", vn:"kỹ năng giao tiếp cá nhân mạnh", tick:false },
+{ en:"see eye to eye /siː aɪ tuː aɪ/", vn:"đồng quan điểm, nhất trí", tick:false },
   ],
   23: [
 { en:"social stratification /ˈsoʊ.ʃəl ˌstræt̬.ə.fɪˈkeɪ.ʃən/", vn:"sự phân tầng xã hội", tick:false },
 { en:"a highly stratified society /ə ˈhaɪ.li ˈstræt̬.ə.faɪd səˈsaɪ.ə.t̬i/", vn:"một xã hội phân tầng cao", tick:false },
 { en:"marginalized groups /ˈmɑːr.dʒə.nə.laɪzd ɡruːps/", vn:"các nhóm bị thiệt thòi, bị gạt ra bên lề xã hội", tick:false },
 { en:"peer pressure /ˈpɪr ˌpreʃ.ɚ/", vn:"áp lực từ bạn bè, đồng trang lứa", tick:false },
+{ en:"a level playing field for sb /ə ˈlev.əl ˈpleɪ.ɪŋ fiːld fɔːr ˈsʌm.bɑː.di/", vn:"một sân chơi công bằng cho ai đó", tick:false },
 { en:"significant inequalities in /sɪɡˈnɪf.ɪ.kənt ˌɪn.ɪˈkwɑː.lə.t̬iz ɪn/", vn:"sự bất bình đẳng đáng kể trong", tick:false },
 { en:"protect the rights of /prəˈtekt ðə raɪts əv/", vn:"bảo vệ quyền của", tick:false },
   ],
@@ -817,11 +836,26 @@ const data = {
 { en:"act as a deterrent (to sth) /ækt æz ə dɪˈtɝː.ə.rənt (tuː ˈsʌm.θɪŋ)/", vn:"đóng vai trò răn đe (đối với cái gì đó)", tick:false },
 { en:"stringent regulations /ˈstrɪn.dʒənt ˌreɡ.jəˈleɪ.ʃənz/", vn:"các quy định nghiêm ngặt", tick:false },
 { en:"juvenile delinquency /ˈdʒuː.və.naɪl dɪˈlɪŋ.kwən.si/", vn:"tội phạm vị thành niên", tick:false },
+{ en:"throw the book at someone /θroʊ ðə bʊk æt ˈsʌm.wʌn/", vn:"trừng phạt ai đó rất nặng", tick:false },
+{ en:"the perpetrators of /ðə ˈpɝː.pəˌtreɪ.t̬ɚz əv/", vn:"những kẻ gây ra (tội ác)", tick:false },
+{ en:"fraud /frɔːd/", vn:"gian lận, lừa đảo", tick:false },
 { en:"strict punishments /strɪkt ˈpʌn.ɪʃ.mənts/", vn:"hình phạt nghiêm khắc", tick:false },
 { en:"potential criminals /pəˈten.ʃəl ˈkrɪm.ə.nəlz/", vn:"những tội phạm tiềm năng", tick:false },
 { en:"be often linked to high rates of /bi ˈɔː.fən lɪŋkt tuː haɪ reɪts əv/", vn:"thường liên quan đến tỷ lệ cao của", tick:false },
   ],
-
+  25: [
+{ en:"prohibitively expensive /prəˈhɪb.ɪ.t̬ɪv.li ɪkˈspen.sɪv/", vn:"đắt đến mức không thể chi trả", tick:false },
+{ en:"financial prudence /faɪˈnæn.ʃəl ˈpruː.dəns/", vn:"sự thận trọng về tài chính", tick:false },
+{ en:"during economic downturns /ˈdʊr.ɪŋ ˌiː.kəˈnɑː.mɪk ˈdaʊn.tɝːnz/", vn:"trong thời kỳ suy thoái kinh tế", tick:false },
+{ en:"cost an arm and a leg /kɔːst ən ɑːrm ænd ə leɡ/", vn:"rất đắt đỏ", tick:false },
+{ en:"lucrative business opportunities for /ˈluː.krə.t̬ɪv ˈbɪz.nəs ˌɑː.pɚˈtuː.nə.t̬iz fɔːr/", vn:"cơ hội kinh doanh sinh lợi cho", tick:false },
+{ en:"entrepreneurs /ˌɑːn.trə.prəˈnɝːz/", vn:"doanh nhân, người khởi nghiệp", tick:false },
+  ],
+  26: [
+{ en:"at a snail's pace /ət ə ˈsneɪlz peɪs/", vn:"với tốc độ cực kỳ chậm", tick:false },
+{ en:"every cloud has a silver lining /ˈev.ri klaʊd hæz ə ˈsɪl.vɚ ˈlaɪ.nɪŋ/", vn:"trong cái rủi có cái may", tick:false },
+{ en:"inextricably linked /ˌɪn.ɪkˈstrɪk.ə.bli lɪŋkt/", vn:"gắn bó chặt chẽ, không thể tách rời", tick:false },
+  ],
 };
 
 
